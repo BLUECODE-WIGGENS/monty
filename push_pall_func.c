@@ -35,3 +35,23 @@ add_newNode(stack, atoi(arguments));
 if (stack_environ == 'q')
 add_queueNode(stack, atoi(arguments));
 }
+
+/**
+ * pall - prints all the values on the stack
+ * @stack: double pointer to head of the stack
+ * @line_number: void
+ *
+ * Return: void
+ */
+void pall(stack_t **stack, unsigned int line_number)
+{
+stack_t *head_node;
+
+(void) line_number;
+head_node = *stack;
+while (head_node != NULL)
+{
+printf("%d\n", head_node->n);
+head_node = head_node->next;
+}
+}
