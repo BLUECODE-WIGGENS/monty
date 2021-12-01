@@ -20,3 +20,29 @@ exit(EXIT_FAILURE);
 }
 printf("%d\n", head_node->n);
 }
+
+/**
+ * pop - removes the top element of the stack
+ * @stack: double pointer to head of the stack
+ * @line_number: number line.
+ *
+ * Return: void
+ */
+void pop(stack_t **stack, unsigned int line_number)
+{
+stack_t *head_node;
+
+head_node = *stack;
+if (head_node == NULL)
+{
+dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n");
+free_struct(*stack);
+exit(EXIT_FAILURE);
+}
+
+if ((*stack)->next)
+(*stack)->next->prev = NULL;
+*stack = (*stack)->next;
+
+free(head_node);
+}
