@@ -46,3 +46,30 @@ if ((*stack)->next)
 
 free(head_node);
 }
+
+/**
+ * swap - swaps the top two elements of the stack.
+ * @stack: double pointer to head of stack
+ * @line_number: number line
+ *
+ * Return: void
+ */
+void swap(stack_t **stack, unsigned int line_number)
+{
+stack_t *temporary_node;
+
+temporary_node = *stack;
+if (!stack || !*stack || !((*stack)->next))
+{
+dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
+free_struct(*stack);
+exit(EXIT_FAILURE);
+}
+*stack = (*stack)->next;
+(*stack)->prev = NULL;
+if ((*stack)->next)
+((*stack)->next)->prev = temporary_node;
+temporary_node = (*stack)->next;
+(*stack)->next = temporary_node;
+temporary_node->prev = *stack;
+}
