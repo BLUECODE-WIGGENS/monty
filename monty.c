@@ -12,7 +12,8 @@ int stack_environ;
 int main(int argc, char **argv)
 {
 	FILE *fd;
-	char *args_line = NULL, **arg_list;
+	char *args_line = NULL;
+	char **arg_list;
 	size_t size = 0;
 	stack_t *stack = NULL;
 	int line_number = 1;
@@ -52,29 +53,30 @@ char **argument_block(char *string)
 {
 
 	int cloop = 0;
-	char *argument, **stack_arglist, *seperators = SEPERATORS;
+	char *argument;
+	char  **tokens;
+	char *sep = " \t\a\n";
 
-	stack_arglist = malloc(sizeof(char *) * 32);
-	if (stack_arglist == NULL)
+	tokens = malloc(sizeof(char *) * 32);
+	if (tokens == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	*stack_arglist = NULL;
-	argument = strtok(string, seperators);
+	*tokens = NULL;
+	argument = strtok(string, sep);
 	while (argument != NULL)
 	{
-		stack_arglist[cloop] = argument;
+		tokens[cloop] = argument;
 		cloop++;
-		argument = strtok(NULL, seperators);
+		argument = strtok(NULL, sep);
 	}
-	if ((argument == NULL && *stack_arglist == NULL)
-	 || *stack_arglist[0] == COMMENT)
+	if ((argument == NULL && *tokens == NULL) || *tokens[0] == '#')
 	{
-		free(stack_arglist);
+		free(tokens);
 		free(argument);
 		return (NULL);
 	}
-	stack_arglist[cloop] = NULL;
-	return (stack_arglist);
+	tokens[cloop] = NULL;
+	return (tokens);
 }
