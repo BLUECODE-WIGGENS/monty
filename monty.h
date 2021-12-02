@@ -50,9 +50,9 @@ void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 int main(int argc, char *argv[]);
-void get_func(char **tokens, char *buffer,
+void get_func(char **stack_arglist, char *size,
 stack_t **stack, unsigned int line_number, FILE *fd);
-char **argument_block(char *str);
+char **argument_block(char *string);
 
 void free_struct(stack_t *stack);
 

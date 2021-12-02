@@ -11,12 +11,12 @@
  * Return: Void
  */
 
-void get_func(char **tokens, char *buffer,
+void get_func(char **stack_arglist, char *size,
 stack_t **stack, unsigned int line_number, FILE *fd)
 {
-	int i = 0;
-	char *check = tokens[1];
-	instruction_t op_codes[] = {
+	int cloop = 0;
+	char *check = stack_arglist[1];
+	instruction_t list_func[] = {
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
@@ -25,24 +25,24 @@ stack_t **stack, unsigned int line_number, FILE *fd)
 		{NULL, NULL}
 	};
 
-	if (strcmp(tokens[0], "push") == 0)
+	if (strcmp(stack_arglist[0], "push") == 0)
 	{
-		if (!tokens[1] || isdigit(*check) == 0)
+		if (!stack_arglist[1] || isdigit(*check) == 0)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			free(tokens);
-			free(buffer);
+			free(stack_arglist);
+			free(size);
 			free_struct(*stack);
 			fclose(fd);
 			exit(EXIT_FAILURE);
 		}
 	}
-	if (tokens[1])
-		stack_environ = atoi(tokens[1]);
-	while (op_codes[i].opcode != NULL)
+	if (stack_arglist[1])
+		stack_environ = atoi(stack_arglist[1]);
+	while (list_func[cloop].opcode != NULL)
 	{
-		if (strcmp(op_codes[i].opcode, tokens[0]) == 0)
-			op_codes[i].f(stack, line_number);
-		i++;
+		if (strcmp(list_func[cloop].opcode, stack_arglist[0]) == 0)
+			list_func[cloop].f(stack, line_number);
+		cloop++;
 	}
 }

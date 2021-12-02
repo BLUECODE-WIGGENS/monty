@@ -48,7 +48,7 @@ int main(int argc, char **argv)
  *
  *Return: array of tokens
  */
-char **argument_block(char *str)
+char **argument_block(char *string)
 {
 
 	int cloop = 0;
@@ -61,7 +61,7 @@ char **argument_block(char *str)
 		exit(EXIT_FAILURE);
 	}
 	*stack_arglist = NULL;
-	argument = strtok(str, seperators);
+	argument = strtok(string, seperators);
 	while (argument != NULL)
 	{
 		stack_arglist[cloop] = argument;
