@@ -39,7 +39,7 @@ stack_t *head_node;
 
 (void) line_number;
 head_node = *stack;
-while (head_node)
+while (head_node != NULL)
 {
 printf("%d\n", head_node->n);
 head_node = head_node->next;
