@@ -75,10 +75,11 @@ temporary_node->prev = *stack;
 }
 
 /**
- * @brief 
- * 
- * @param stack 
- * @param line_number 
+ * add - adds the top two elements of the stack.
+ * @stack:  double head pointer
+ * @line_number: line number
+ *
+ * Return: void
  */
 void add(stack_t **stack, unsigned int line_number)
 {
@@ -96,4 +97,17 @@ exit(EXIT_FAILURE);
 (*stack)->n += new_node->n;
 (*stack)->prev = NULL;
 free(new_node);
+}
+
+/**
+ * nop - doesn't do anything
+ * @stack: double head pointer
+ * @line_number: line number
+ *
+ * Return: void
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+(void)stack;
+(void)line_number;
 }
