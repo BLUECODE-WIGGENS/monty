@@ -9,31 +9,22 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-size_t args_len = 0, cloop;
-char array_size[128] = "", *arguments = array_size;
+stack_t *new_node;
 
-arguments = strtok(NULL, SEPERATORS);
-
-if (arguments == NULL)
+new_node = malloc(sizeof(stack_t));
+if (new_node == NULL)
 {
-dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
+fprintf(stderr, "L%u: usage: push integer\n", line_number);
 free_struct(*stack);
 exit(EXIT_FAILURE);
 }
 
-args_len = strlen(arguments);
-for (cloop = 0; cloop < args_len; cloop++)
-if (!isdigit(arguments[cloop]) && arguments[0] != "-")
-{
-dprintf(STDERR_FILENO, "L%u: usage: push interger\n", line_number);
-free_struct(*stack);
-exit(EXIT_FAILURE);
-}
-if (stack_environ == 's')
-add_newNode(stack, atoi(arguments));
-
-if (stack_environ == 'q')
-add_queueNode(stack, atoi(arguments));
+new_node->next = *stack;
+new_node->prev = NULL;
+new_node->n = stack_environ;
+if (*stack)
+(*stack)->prev = new_node;
+*stack = new_node;
 }
 
 /**

@@ -14,7 +14,7 @@ stack_t *head_node;
 head_node = *stack;
 if (head_node == NULL)
 {
-dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 free_struct(*stack);
 exit(EXIT_FAILURE);
 }
@@ -24,7 +24,7 @@ printf("%d\n", head_node->n);
 /**
  * pop - removes the top element of the stack
  * @stack: double pointer to head of the stack
- * @line_number: number line.
+ * @line_number:gcc -Wall -Werror -Wextra -pedantic -std=c90 *.c -o monty number line.
  *
  * Return: void
  */
@@ -35,7 +35,7 @@ stack_t *head_node;
 head_node = *stack;
 if (head_node == NULL)
 {
-dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n");
+fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 free_struct(*stack);
 exit(EXIT_FAILURE);
 }
@@ -61,7 +61,7 @@ stack_t *temporary_node;
 temporary_node = *stack;
 if (!stack || !*stack || !((*stack)->next))
 {
-dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
+fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 free_struct(*stack);
 exit(EXIT_FAILURE);
 }

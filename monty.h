@@ -2,9 +2,12 @@
 #define _MONTY_H
 
 #define SEPERATORS "\t\r\n\v\f"
+#define COMMENT "#"
 
-extern char stack_environ;
+extern int stack_environ;
 
+#define  _GNU_SOURCE
+#define  _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -46,5 +49,11 @@ void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
+int main(int argc, char *argv[]);
+void get_func(char **tokens, char *buffer,
+stack_t **stack, unsigned int line_number, FILE *fd);
+char **tokenizer(char *str);
+
+void free_struct(stack_t *stack);
 
 #endif
