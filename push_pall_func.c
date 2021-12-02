@@ -1,6 +1,24 @@
 #include "monty.h"
 
 /**
+ * _len - counts length of doubly linked list
+ * @stack: head node
+ *
+ * Return: length 
+ */
+size_t _len(const stack_t *stack)
+{
+size_t len = 0;
+
+while (stack)
+{
+stack = stack->next;
+len++;
+}
+return (len);
+}
+
+/**
  * push - pushes an element to the stack.
  * @stack: pointer to pointer to head of the stack
  * @line_number: counts number of lines
@@ -47,7 +65,7 @@ head_node = head_node->next;
 }
 
 /**
- * add - subtracts the top two elements of the stack.
+ * sub - subtracts the top two elements of the stack.
  * @stack:  double head pointer
  * @line_number: line number
  *
@@ -58,21 +76,20 @@ void sub(stack_t **stack, unsigned int line_number)
 stack_t *new_node;
 
 new_node = *stack;
-if (!stack || !*stack || !((*stack)->next))
+if (_len(*stack) < 2 || *stack == NULL)
 {
 fprintf(stderr, "L%d: can't add, stack too short", line_number);
 free_struct(*stack);
 exit(EXIT_FAILURE);
 }
-
+new_node->next->n -= (*stack)->n;
 *stack = (*stack)->next;
-(*stack)->n -= new_node->n;
 free(new_node);
 (*stack)->prev = NULL;
 }
 
 /**
- * add - subtracts the top two elements of the stack.
+ * -div - subtracts the top two elements of the stack.
  * @stack:  double head pointer
  * @line_number: line number
  *
@@ -83,7 +100,7 @@ void _div(stack_t **stack, unsigned int line_number)
 stack_t *new_node;
 
 new_node = *stack;
-if (!stack || !*stack || !((*stack)->next))
+if (_len(*stack) < 2 || *stack == NULL)
 {
 fprintf(stderr, "L%d: can't add, stack too short", line_number);
 free_struct(*stack);
