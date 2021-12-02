@@ -4,7 +4,7 @@
  * _len - counts length of doubly linked list
  * @stack: head node
  *
- * Return: length 
+ * Return: length
  */
 size_t _len(const stack_t *stack)
 {
@@ -89,7 +89,7 @@ free(new_node);
 }
 
 /**
- * -div - subtracts the top two elements of the stack.
+ * _div - devides the top two elements of the stack.
  * @stack:  double head pointer
  * @line_number: line number
  *
