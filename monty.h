@@ -1,18 +1,18 @@
 #ifndef _MONTY_H
 #define _MONTY_H
 
-#define SEPERATORS "\t\r\n\v\f"
-#define COMMENT "#"
-
-extern int stack_environ;
-
+#define SEPERATORS "\t\a\n"
+#define COMMENT '#'
 #define  _GNU_SOURCE
 #define  _POSIX_C_SOURCE 200809L
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
+
+extern int stack_environ;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -52,7 +52,7 @@ void swap(stack_t **stack, unsigned int line_number);
 int main(int argc, char *argv[]);
 void get_func(char **tokens, char *buffer,
 stack_t **stack, unsigned int line_number, FILE *fd);
-char **tokenizer(char *str);
+char **argument_block(char *str);
 
 void free_struct(stack_t *stack);
 

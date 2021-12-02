@@ -12,11 +12,10 @@ int stack_environ;
 int main(int argc, char **argv)
 {
 	FILE *fd;
-	char *args_line = NULL;
-	char **tokens;
+	char *args_line = NULL, **arg_list;
 	size_t size = 0;
 	stack_t *stack = NULL;
-	int line_number;
+	int line_number = 1;
 
 	if (argc != 2)
 	{
@@ -31,14 +30,50 @@ int main(int argc, char **argv)
 	}
 	for (line_number = 1; getline(&args_line, &size, fd) != -1; line_number++)
 	{
-		tokens = tokenizer(buffer);
-		if (tokens == NULL)
+		arg_list = argument_block(args_line);
+		if (arg_list == NULL)
 			continue;
-		get_func(tokens, buffer, &stack, line_number, fd);
-		free(tokens);
+		get_func(arg_list, args_line, &stack, line_number, fd);
+		free(arg_list);
 	}
-	free(buffer);
+	free(args_line);
 	free_struct(stack);
 	fclose(fd);
 	return (0);
+}
+
+/**
+ *argument_block - function to brake a string into tokens
+ *@str: string to be tokenized
+ *
+ *Return: array of tokens
+ */
+char **argument_block(char *str)
+{
+
+	int cloop = 0;
+	char *argument, **stack_arglist, *seperators = SEPERATORS;
+
+	stack_arglist = malloc(sizeof(char *) * 32);
+	if (stack_arglist == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	*stack_arglist = NULL;
+	argument = strtok(str, seperators);
+	while (argument != NULL)
+	{
+		stack_arglist[cloop] = argument;
+		cloop++;
+		argument = strtok(NULL, seperators);
+	}
+	if ((argument == NULL && *stack_arglist == NULL) || *stack_arglist[0] == COMMENT)
+	{
+		free(stack_arglist);
+		free(argument);
+		return (NULL);
+	}
+	stack_arglist[cloop] = NULL;
+	return (stack_arglist);
 }
