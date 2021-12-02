@@ -1,8 +1,6 @@
 #ifndef _MONTY_H
 #define _MONTY_H
 
-#define SEPERATORS "\t\a\n"
-#define COMMENT '#'
 #define  _GNU_SOURCE
 #define  _POSIX_C_SOURCE 200809L
 
@@ -53,6 +51,7 @@ int main(int argc, char *argv[]);
 void get_func(char **stack_arglist, char *size,
 stack_t **stack, unsigned int line_number, FILE *fd);
 char **argument_block(char *string);
+void add(stack_t **stack, unsigned int line_number);
 
 void free_struct(stack_t *stack);
 

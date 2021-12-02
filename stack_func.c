@@ -73,3 +73,27 @@ temporary_node = (*stack)->next;
 (*stack)->next = temporary_node;
 temporary_node->prev = *stack;
 }
+
+/**
+ * @brief 
+ * 
+ * @param stack 
+ * @param line_number 
+ */
+void add(stack_t **stack, unsigned int line_number)
+{
+stack_t *new_node;
+
+new_node = *stack;
+if (!stack || !*stack || !((*stack)->next))
+{
+fprintf(stderr, "L%d: can't add, stack too short", line_number);
+free_struct(*stack);
+exit(EXIT_FAILURE);
+}
+
+*stack = (*stack)->next;
+(*stack)->n += new_node->n;
+(*stack)->prev = NULL;
+free(new_node);
+}
