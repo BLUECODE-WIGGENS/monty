@@ -22,6 +22,7 @@ stack_t **stack, unsigned int line_number, FILE *fd)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 

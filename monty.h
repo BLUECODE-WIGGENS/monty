@@ -52,6 +52,7 @@ void get_func(char **stack_arglist, char *size,
 stack_t **stack, unsigned int line_number, FILE *fd);
 char **argument_block(char *string);
 void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 
 void free_struct(stack_t *stack);
 
