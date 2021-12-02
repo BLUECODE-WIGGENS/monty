@@ -56,22 +56,20 @@ free(head_node);
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
-stack_t *temporary_node;
+stack_t *current1, *current2;
+int temp;
 
-temporary_node = *stack;
 if (!stack || !*stack || !((*stack)->next))
 {
 fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 free_struct(*stack);
 exit(EXIT_FAILURE);
 }
-*stack = (*stack)->next;
-(*stack)->prev = NULL;
-if ((*stack)->next)
-((*stack)->next)->prev = temporary_node;
-temporary_node = (*stack)->next;
-(*stack)->next = temporary_node;
-temporary_node->prev = *stack;
+current1 = *stack;
+current2 = current1->next;
+temp = current1->n;
+current1->n = current2->n;
+current2->n = temp;
 }
 
 /**
