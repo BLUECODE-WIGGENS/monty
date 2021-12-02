@@ -24,7 +24,7 @@ printf("%d\n", head_node->n);
 /**
  * pop - removes the top element of the stack
  * @stack: double pointer to head of the stack
- * @line_number:gcc -Wall -Werror -Wextra -pedantic -std=c90 *.c -o monty number line.
+ * @line_number: number line.
  *
  * Return: void
  */

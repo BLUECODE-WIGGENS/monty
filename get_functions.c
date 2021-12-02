@@ -1,16 +1,15 @@
 #include "monty.h"
 
 /**
- * get_instructions - function to call the function to the instruction
- * @tokens: array of tokens
+ * get_func - function to call the function to the instruction_t
+ * @stack_arglist: array of tokens
  * @stack: head of the stack
- * @buffer: buffer
+ * @size: n_byte buffer
  * @line_number: line number
  * @fd: file
  *
  * Return: Void
  */
-
 void get_func(char **stack_arglist, char *size,
 stack_t **stack, unsigned int line_number, FILE *fd)
 {

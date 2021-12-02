@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 
 /**
  *argument_block - function to brake a string into tokens
- *@str: string to be tokenized
+ *@string: string to be tokenized
  *
  *Return: array of tokens
  */
@@ -68,7 +68,8 @@ char **argument_block(char *string)
 		cloop++;
 		argument = strtok(NULL, seperators);
 	}
-	if ((argument == NULL && *stack_arglist == NULL) || *stack_arglist[0] == COMMENT)
+	if ((argument == NULL && *stack_arglist == NULL)
+	 || *stack_arglist[0] == COMMENT)
 	{
 		free(stack_arglist);
 		free(argument);
