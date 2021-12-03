@@ -81,3 +81,36 @@ exit(EXIT_FAILURE);
 }
 printf("%c\n", num);
 }
+
+
+/**
+ * print_string - prints the string at the top of the stack
+ * @stack: double head pointer
+ * @line_number: line number 
+ *
+ * Return: void
+ */
+void print_string(stack_t **stack, unsigned int line_number)
+{
+int num;
+stack_t *new_node;
+
+(void)line_number;
+new_node = *stack;
+if (*stack == NULL)
+{
+printf("\n");
+return;
+}
+
+while(new_node)
+{
+num = new_node->n;
+if (num <= 0 || num > 127)
+break;
+
+printf("%c", num);
+new_node = new_node->next;
+}
+printf("\n");
+}

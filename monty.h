@@ -60,6 +60,11 @@ void _div(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void print_char(stack_t **stack, unsigned int line_number);
+void print_string(stack_t **stack, unsigned int line_number);
+void rotl_stack(stack_t **stack, unsigned int line_number);
+void rotr_stack(stack_t **stack, unsigned int line_number);
+void stack_set(stack_t **stack, unsigned int line_number);
+void queue_set(stack_t **stack, unsigned int line_number);
 
 void free_struct(stack_t *stack);
 

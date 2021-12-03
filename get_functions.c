@@ -28,6 +28,11 @@ stack_t **stack, unsigned int line_number, FILE *fd)
 	    {"mul", _mul},
 		{"mod", mod},
 		{"pchar", print_char},
+		{"pstr", print_string},
+		{"rotl", rotl_stack},
+		{"rotr", rotr_stack},
+		{"stack", stack_set},
+		{"queue", queue_set},
 		{NULL, NULL}
 	};
 
@@ -51,4 +56,5 @@ stack_t **stack, unsigned int line_number, FILE *fd)
 			list_func[cloop].f(stack, line_number);
 		cloop++;
 	}
+	
 }
