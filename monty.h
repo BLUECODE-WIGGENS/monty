@@ -9,6 +9,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <stdarg.h>
 
 extern int stack_environ;
 
@@ -57,7 +58,8 @@ void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
-
+void mod(stack_t **stack, unsigned int line_number);
+void print_char(stack_t **stack, unsigned int line_number);
 
 void free_struct(stack_t *stack);
 
