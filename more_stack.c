@@ -15,7 +15,7 @@ stack_t *new_node;
 new_node = *stack;
 if (_len(*stack) < 2 || *stack == NULL)
 {
-fprintf(stderr, "L%d: can't mul, stack too short", line_number);
+fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 exit(EXIT_FAILURE);
 }
 new_node->next->n *= (*stack)->n;
